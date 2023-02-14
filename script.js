@@ -4,13 +4,13 @@ var rotateSpeed = -60;
 var imageWidth = 170;
 var imageHeight = 120;
 setTimeout(init, 1000);
-var odrag = document.getElementById("drag-container");
-var ospin = document.getElementById("spin-container");
-var aImg = ospin.getElementsByTagName('img');
+var onDrag = document.getElementById("drag-container");
+var onSpin = document.getElementById("spin-container");
+var aImg = onSpin.getElementsByTagName('img');
 var eEle = [...aImg];
 // Size of images
-ospin.style.width = imageWidth + "px";
-ospin.style.height = imageHeight + "px";
+onSpin.style.width = imageWidth + "px";
+onSpin.style.height = imageHeight + "px";
 
 // Size of ground - depend on radius
 var ground = document.getElementById("ground");
@@ -35,7 +35,7 @@ function applyTransform(obj) {
 }
 
 function playSpin(yes) {
-    ospin.style.animationPlayState = (yes?'running':'paused');
+    onSpin.style.animationPlayState = (yes?'running':'paused');
 }
 
 var sX, sY, nX, nY, desX = 0,
@@ -46,12 +46,12 @@ var sX, sY, nX, nY, desX = 0,
 // auto spin
 if (autoRotate) {
     var animationName = (rotateSpeed > 0 ? 'spin' : 'spinRevert');
-    ospin.style.animation = `${animationName} ${Math.abs(rotateSpeed)}s infinite linear`
+    onSpin.style.animation = `${animationName} ${Math.abs(rotateSpeed)}s infinite linear`
 }
 
 // setup events
 document.onpointerdown = function (e) {
-    clearInterval(odrag.timer);
+    clearInterval(onDrag.timer);
     e = e || window.event;
     var sX = e.clientX,
         sY = e.clientY;
@@ -64,21 +64,21 @@ document.onpointerdown = function (e) {
         desY = nY - sY;
         tX += desX * 0.1;
         tY = desY ** 0.1;
-        applyTransform(odrag);
+        applyTransform(onDrag);
         sX = nX;
         sY = nY;
     };
     
     this.onpointerup = function (e) {
-        odrag.timer = setInterval(function () {
+        onDrag.timer = setInterval(function () {
             desX *= 0.95;
             desY *= 0.95;
             tX += desX * 0.1;
             tY += desY * 0.1;
-            applyTransform(odrag);
+            applyTransform(onDrag);
             playSpin(false);
             if (Math.abs(desX) < 0.5 && Math.abs(desY) < 0.5) {
-                clearInterval(odrag.timer);
+                clearInterval(onDrag.timer);
                 playSpin(true);
             }
         }, 17);

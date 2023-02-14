@@ -20,6 +20,8 @@ body {
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
 }
+
+ /* i dont know why they give id to a container and then give styling to the elements inside that container with element type rather than give stylesto all the elements by giving a class to them so that we can also make common styles to the elements  */
 #drag-container,
 #spin-container {
     position: relative;

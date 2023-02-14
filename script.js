@@ -30,8 +30,8 @@ function applyTransform(obj) {
     if(tY > 180) tY = 180;
     if(tY < 0) tY = 0;
 
-    //Apply the angle
-    obj.atyle.transform = "rotateX(" + (-tY) + "deg) rotateY(" + (tX) + "deg)";
+    //Apply the angle & syntax error 
+    obj.style.transform = "rotateX(" + (-tY) + "deg) rotateY(" + (tX) + "deg)";
 }
 
 function playSpin(yes) {
